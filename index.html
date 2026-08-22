@@ -437,62 +437,71 @@ const m1EnglishSentence=(unit,question,answer,pattern,parts,approach,point="")=>
   englishGuide:{pattern,parts,point}
 });
 const MINATOGAWA1_MONTHS=[
-  ["1月","January"],["2月","February"],["3月","March"],["4月","April"],
-  ["5月","May"],["6月","June"],["7月","July"],["8月","August"],
-  ["9月","September"],["10月","October"],["11月","November"],["12月","December"]
-].map(([jp,en])=>m1EnglishWord("月名",jp+"を英語で書きなさい。",en,"月の名前は、最初の文字を大文字で書きます。"));
+  ["1月","January","ローマ神話のJanus（ヤヌス）が由来です。過去と未来の両方を見る「2つの顔」を持つ神なので、年の変わり目にぴったり。つづりはJan＋uary。月名なのでJは大文字です。"],
+  ["2月","February","古代ローマの清めの行事Februaが名前のもとです。Februaryはrが2つある8文字。Feb・ru・aryと3つに切ると、長いつづりも覚えやすくなります。"],
+  ["3月","March","戦いの神Mars（マルス）から生まれた名前です。昔のローマでは3月が1年の始まりでした。Marsに似ていますが、月名は最後がchのMarchです。"],
+  ["4月","April","語源ははっきり決まっていませんが、「開く」というラテン語と結び付ける説があります。春に花が開く月、とイメージするとAprilが残りやすくなります。"],
+  ["5月","May","成長をつかさどる女神Maia（マイア）にちなむとされます。草木がぐんぐん育つ季節の名前です。Mayは月名で最短の3文字。Mは大文字です。"],
+  ["6月","June","女神Juno（ユノ／ジュノー）が由来とされます。JuneとJunoは最初のJunまで同じ。6月は最後をeにしてJune、と覚えます。"],
+  ["7月","July","Julius Caesar（ユリウス・カエサル）の名前が由来です。Juneと混ざりやすいので、6月はJune、7月はJulyと最後の2文字で区別します。"],
+  ["8月","August","ローマ皇帝Augustus（アウグストゥス）にちなむ名前です。人の名前が、そのまま夏の月名として残りました。最初はAu、最後はgustです。"],
+  ["9月","September","ラテン語septem（7）が語源です。「9月なのになぜ7？」というズレは、昔の暦が3月始まりだった名残。September・October・November・Decemberは4兄弟として覚えます。"],
+  ["10月","October","ラテン語octo（8）が語源です。octopus（タコ＝8本足）のoctoと同じ。昔の暦では3月から数えて8番目だったので、この名前になりました。"],
+  ["11月","November","ラテン語novem（9）が語源です。昔の3月始まりの暦では9番目の月でした。後半の-emberはSeptember・November・Decemberで共通です。"],
+  ["12月","December","ラテン語decem（10）が語源です。decimal（10進法）のdecとも同じ仲間。昔の暦では3月から数えて10番目だった名残が、今も名前に残っています。"]
+].map(([jp,en,story])=>m1EnglishWord("月名",jp+"を英語で書きなさい。",en,story));
 const MINATOGAWA1_ENGLISH_SOURCE=[
-  m1EnglishWord("基本語句","「教室へ行ってください。」を英語にしなさい。","Please go to your classroom.","pleaseを文の最初に置くと、ていねいなお願いになります。"),
-  m1EnglishWord("基本語句","「私は『Shake It Off』を聞きます。」を英語にしなさい。","I listen to “Shake It Off.”","「〜を聞く」はlisten to 〜です。listenの後ろにtoを置きます。"),
-  m1EnglishWord("基本語句","「写真を撮る」を英語で書きなさい。","take a picture","takeとpictureの間にaを置きます。"),
-  m1EnglishWord("基本語句","「野球をする」を英語で書きなさい。","play baseball","球技の前には、ふつうtheを付けません。"),
+  m1EnglishWord("基本語句","「教室へ行ってください。」を英語にしなさい。","Please go to your classroom.","Pleaseは命令を「お願い」に変えるクッションです。Go to your classroom.だけなら「教室へ行きなさい」。先頭にPleaseを置くと「行ってください」と、ぐっとやわらかくなります。"),
+  m1EnglishWord("基本語句","「私は『Shake It Off』を聞きます。」を英語にしなさい。","I listen to “Shake It Off.”","listenは「意識して耳を向ける」、hearは「自然に聞こえる」。曲を自分から聞くのでlistenを使います。耳を音の方向へ向ける矢印がto、とイメージしてlisten toをセットで覚えます。"),
+  m1EnglishWord("基本語句","「写真を撮る」を英語で書きなさい。","take a picture","英語では写真を「作る」のではなくtake（取る）と表します。カメラで一瞬をつかみ取る、と考えると忘れにくい。pictureは1枚なのでa pictureです。"),
+  m1EnglishWord("基本語句","「野球をする」を英語で書きなさい。","play baseball","playはスポーツにも楽器にも使えます。ただしスポーツはplay baseball、楽器はplay the guitar。野球の前にはtheを付けない、という対比で覚えます。"),
 
-  m1EnglishSentence("can","I like Sakura. She can skateboard very well.","私はサクラが好きです。彼女はとても上手にスケートボードをすることができます。","すでに出た女性 → she / can + 動詞の原形",[["I like Sakura.","私はサクラが好きです"],["She","彼女は（サクラを指す）"],["can skateboard","スケートボードをすることができます"],["very well","とても上手に"]],"Sakuraは女性なので、2文目ではsheで言いかえます。","canの後ろはskateboardsではなく、動詞の原形skateboardです。"),
-  m1EnglishSentence("can","I like Sota. He can play shogi very well.","私はソウタが好きです。彼はとても上手に将棋を指すことができます。","すでに出た男性 → he / can + 動詞の原形",[["I like Sota.","私はソウタが好きです"],["He","彼は（ソウタを指す）"],["can play shogi","将棋を指すことができます"],["very well","とても上手に"]],"Sotaは男性なので、2文目ではheで言いかえます。","canの後ろはplaysではなく、動詞の原形playです。"),
-  m1EnglishWord("can","「私はギターを弾くことができます。」を英語にしなさい。","I can play the guitar.","「〜できます」はcan + 動詞の原形で表します。楽器の前にはtheを付けます。"),
-  m1EnglishWord("can","「あなたはギターを弾けますか。― はい、弾けます。／いいえ、弾けません。」を英語にしなさい。","Can you play the guitar? — Yes, I can. / No, I cannot.","canを主語の前に出して疑問文を作り、答えにもcanを使います。cannotの短縮形はcan'tです。"),
-  m1EnglishWord("can","「私はギターを弾くことができません。」を英語にしなさい。","I cannot play the guitar.","「〜できません」はcannot + 動詞の原形です。cannotは1語で書きます。"),
+  m1EnglishSentence("can","I like Sakura. She can skateboard very well.","私はサクラが好きです。彼女はとても上手にスケートボードをすることができます。","すでに出た女性 → she / can + 動詞の原形",[["I like Sakura.","私はサクラが好きです"],["She","彼女は（サクラを指す）"],["can skateboard","スケートボードをすることができます"],["very well","とても上手に"]],"英語は同じ名前を何度も言わず、2回目は代名詞へバトンタッチします。Sakura→Sheとつなぎ、can＋skateboardで「できる」、very wellでその上手さを足します。","canの後ろはskateboardsではなく、動詞の原形skateboardです。"),
+  m1EnglishSentence("can","I like Sota. He can play shogi very well.","私はソウタが好きです。彼はとても上手に将棋を指すことができます。","すでに出た男性 → he / can + 動詞の原形",[["I like Sota.","私はソウタが好きです"],["He","彼は（ソウタを指す）"],["can play shogi","将棋を指すことができます"],["very well","とても上手に"]],"Sotaを2文目でも繰り返さず、Heへバトンタッチ。将棋は英語でもplayを使いますが、スポーツと同じでtheは付けずplay shogiです。","canの後ろはplaysではなく、動詞の原形playです。"),
+  m1EnglishWord("can","「私はギターを弾くことができます。」を英語にしなさい。","I can play the guitar.","canは動詞の前に置く「できるスイッチ」。スイッチの後ろの動詞は必ず元の形なのでplayのままです。楽器にはtheを付けてplay the guitarとします。"),
+  m1EnglishWord("can","「あなたはギターを弾けますか。― はい、弾けます。／いいえ、弾けません。」を英語にしなさい。","Can you play the guitar? — Yes, I can. / No, I cannot.","疑問文ではcanが主語youを飛び越えて先頭へ移動します。Canで聞かれたらcanで答えるのが合言葉。Yes, I do.ではなくYes, I can.です。"),
+  m1EnglishWord("can","「私はギターを弾くことができません。」を英語にしなさい。","I cannot play the guitar.","canにnotを付けると「できない」。ここだけはcan notと離さず、cannotと1語で書くのが基本です。短くするとcan't。後ろはplayのままです。"),
 
-  m1EnglishSentence("My Hero","My hero is Aimyon.","私のあこがれの人は、あいみょんです。","My hero is + 人 ＝「私のあこがれの人は〜です」",[["My hero","私のあこがれの人は"],["is","〜です"],["Aimyon","あいみょん"]],"heroは、ここでは自分があこがれている人・尊敬する人を表します。"),
-  m1EnglishSentence("My Hero","She is a popular singer in Japan.","彼女は日本で人気のある歌手です。","主語 + is + a + 形容詞 + 名詞",[["She","彼女は"],["is","〜です"],["a popular singer","人気のある歌手"],["in Japan","日本で"]],"popularは後ろのsingerを説明します。"),
-  m1EnglishSentence("My Hero","She can play the guitar well.","彼女は上手にギターを弾くことができます。","主語 + can + 動詞の原形 + well",[["She","彼女は"],["can play","弾くことができます"],["the guitar","ギターを"],["well","上手に"]],"canの後ろは動詞の原形playです。楽器の前にはtheを付けます。"),
-  m1EnglishSentence("My Hero","I like her powerful voice.","私は彼女の力強い声が好きです。","like + 人の + 形容詞 + 名詞",[["I like","私は〜が好きです"],["her","彼女の"],["powerful voice","力強い声"]],"powerfulはvoiceを説明する形容詞です。"),
-  m1EnglishSentence("My Hero","My favorite song is “Harunohi.”","私のお気に入りの歌は「ハルノヒ」です。","My favorite + 名詞 + is ...",[["My favorite song","私のお気に入りの歌は"],["is","〜です"],["“Harunohi”","「ハルノヒ」"]],"favoriteは「いちばん好きな・お気に入りの」という意味です。"),
-  m1EnglishSentence("My Hero","It is a song about love.","それは愛についての歌です。","a 名詞 + about + 話題 ＝「〜についての…」",[["It","それは（ハルノヒを指す）"],["is a song","歌です"],["about love","愛についての"]],"aboutは「〜について」という意味です。"),
-  m1EnglishSentence("My Hero","Please listen to the song.","その歌を聞いてください。","Please + 動詞の原形 / listen to + 名詞",[["Please","〜してください"],["listen to","〜を聞く"],["the song","その歌を"]],"listenはtoとセットで使います。"),
+  m1EnglishSentence("My Hero","My hero is Aimyon.","私のあこがれの人は、あいみょんです。","My hero is + 人 ＝「私のあこがれの人は〜です」",[["My hero","私のあこがれの人は"],["is","〜です"],["Aimyon","あいみょん"]],"heroはスーパーヒーローだけではありません。自分があこがれ、すごいと思う人もmy hero。My hero is ...は、好きな人を紹介する文章のスタートに使えます。"),
+  m1EnglishSentence("My Hero","She is a popular singer in Japan.","彼女は日本で人気のある歌手です。","主語 + is + a + 形容詞 + 名詞",[["She","彼女は"],["is","〜です"],["a popular singer","人気のある歌手"],["in Japan","日本で"]],"英語は説明を前から積み上げます。a singer（歌手）にpopularを付けてa popular singer、最後にin Japanを足して「日本で」と範囲を示します。"),
+  m1EnglishSentence("My Hero","She can play the guitar well.","彼女は上手にギターを弾くことができます。","主語 + can + 動詞の原形 + well",[["She","彼女は"],["can play","弾くことができます"],["the guitar","ギターを"],["well","上手に"]],"playはスポーツにも楽器にも使える便利な動詞。ただし楽器にはtheが必要です。can play the guitarで「ギターを弾ける」、wellで「上手に」を足します。"),
+  m1EnglishSentence("My Hero","I like her powerful voice.","私は彼女の力強い声が好きです。","like + 人の + 形容詞 + 名詞",[["I like","私は〜が好きです"],["her","彼女の"],["powerful voice","力強い声"]],"power＋-ful（〜に満ちた）でpowerful＝「力に満ちた」。powerful voiceなら「力強い声」です。herは後ろのvoiceの持ち主を示します。"),
+  m1EnglishSentence("My Hero","My favorite song is “Harunohi.”","私のお気に入りの歌は「ハルノヒ」です。","My favorite + 名詞 + is ...",[["My favorite song","私のお気に入りの歌は"],["is","〜です"],["“Harunohi”","「ハルノヒ」"]],"favoriteは「心のランキング1位」と考えると分かりやすい言葉です。favorite songで「いちばん好きな歌」。Myを付けて自分の好みを紹介します。"),
+  m1EnglishSentence("My Hero","It is a song about love.","それは愛についての歌です。","a 名詞 + about + 話題 ＝「〜についての…」",[["It","それは（ハルノヒを指す）"],["is a song","歌です"],["about love","愛についての"]],"aboutは話題を示す看板です。a song about loveなら「愛についての歌」。Itは直前に出た「ハルノヒ」を指し、同じ名前の繰り返しを避けています。"),
+  m1EnglishSentence("My Hero","Please listen to the song.","その歌を聞いてください。","Please + 動詞の原形 / listen to + 名詞",[["Please","〜してください"],["listen to","〜を聞く"],["the song","その歌を"]],"紹介の最後に「ぜひ聞いて」と相手へ勧める一文です。Pleaseでお願いをやわらかくし、listen toで耳をその歌へ向けるイメージを作ります。"),
 
-  m1EnglishWord("基本語句","「もちろん。いいですとも。」を英語で書きなさい。","Sure.","相手のお願いを快く受けるときに使う表現です。"),
-  m1EnglishWord("基本語句","「（チェス・将棋などの）駒」を英語で書きなさい。","piece","複数の駒ならpiecesです。"),
-  m1EnglishWord("基本語句","「動かす／動く」を英語で書きなさい。","move","canの後ろではmoveのまま使います。"),
-  m1EnglishWord("基本語句","「英語を教える」を英語で書きなさい。","teach English","teachの後ろに教える内容を置きます。"),
-  m1EnglishWord("基本語句","「前へ／前方へ」を英語で書きなさい。","forward","move forwardで「前へ動く」です。"),
-  m1EnglishWord("基本語句","「たくさんのクマ」を英語で書きなさい。","many bears","manyの後ろは複数形bearsにします。"),
-  m1EnglishWord("基本語句","「ほほえみ／笑顔」を英語で書きなさい。","smile","名詞では「笑顔」、動詞では「ほほえむ」です。"),
-  m1EnglishWord("基本語句","「声」を英語で書きなさい。","voice","人の声を表す名詞です。"),
-  m1EnglishWord("基本語句","「歌」を英語で書きなさい。","song","複数ならsongsです。"),
-  m1EnglishWord("基本語句","「彼女の犬」を英語で書きなさい。","her dog","herは名詞の前で「彼女の」を表します。"),
-  m1EnglishWord("基本語句","「人気のある映画」を英語で書きなさい。","a popular movie","1本の映画なのでaを付け、popularをmovieの前に置きます。"),
-  m1EnglishWord("基本語句","it isの短縮形を書きなさい。","it's","it'sはit isを短くした形です。所有を表すitsとは区別します。"),
-  m1EnglishWord("基本語句","「私のお気に入りの歌手」を英語で書きなさい。","my favorite singer","favoriteをsingerの前に置きます。"),
-  m1EnglishWord("基本語句","「とても上手にピアノを演奏する」を英語で書きなさい。","play the piano very well","楽器の前にはtheを付けます。very wellは動作のしかたを説明します。"),
+  m1EnglishWord("基本語句","「もちろん。いいですとも。」を英語で書きなさい。","Sure.","Sure.は相手のお願いに出す「青信号」のひと言。Can you teach it to me?と頼まれてSure.なら、「もちろん、いいよ」とすぐ引き受ける感じです。"),
+  m1EnglishWord("基本語句","「（チェス・将棋などの）駒」を英語で書きなさい。","piece","pieceの中心イメージは「全体の中の1つ」。パズルの1ピースも、将棋の駒もpieceです。何枚・何個もあるならpiecesと複数形にします。"),
+  m1EnglishWord("基本語句","「動かす／動く」を英語で書きなさい。","move","moveは場所が変わること。映画movieは、もともとmoving picture（動く絵）から生まれた言葉です。canの後ろならmovesではなくmoveのまま使います。"),
+  m1EnglishWord("基本語句","「英語を教える」を英語で書きなさい。","teach English","teacher（先生）の中にteach（教える）がそのまま隠れています。teachの後ろに教える内容を置き、言語名Englishは大文字で始めます。"),
+  m1EnglishWord("基本語句","「前へ／前方へ」を英語で書きなさい。","forward","forwardのfore-は「前」を表す部分です。将棋の駒が前へ進む場面を思い浮かべて、move forwardをひとかたまりで覚えます。"),
+  m1EnglishWord("基本語句","「たくさんのクマ」を英語で書きなさい。","many bears","manyは数えられるものの「たくさん」。クマを1頭、2頭と数えられるのでmany bearsです。manyの後ろは必ず複数形にして、bearにsを付けます。"),
+  m1EnglishWord("基本語句","「ほほえみ／笑顔」を英語で書きなさい。","smile","smileは1語で二役。名詞なら「笑顔」、動詞なら「ほほえむ」です。スマイルマークやsmiley faceを思い浮かべると、意味とつづりが結び付きます。"),
+  m1EnglishWord("基本語句","「声」を英語で書きなさい。","voice","voiceは人が出す「声」。soundは音全般です。歌手についてpowerful voiceと言えば、ただ大きい音ではなく「力強い歌声」を表せます。"),
+  m1EnglishWord("基本語句","「歌」を英語で書きなさい。","song","sing（歌う）が名詞になるとsong（歌）。iがoに変わる不規則なペアです。sing a songなら「歌を歌う」になります。"),
+  m1EnglishWord("基本語句","「彼女の犬」を英語で書きなさい。","her dog","sheは「彼女は」、herは名詞の前で「彼女の」。dogの持ち主が彼女なのでher dogです。名前の札をdogの前に付けるイメージです。"),
+  m1EnglishWord("基本語句","「人気のある映画」を英語で書きなさい。","a popular movie","英語では説明する語を名詞の前に置きます。popular→movieの順で「人気のある→映画」。映画は1本なので、先頭にaも必要です。"),
+  m1EnglishWord("基本語句","it isの短縮形を書きなさい。","it's","it isをぎゅっと縮め、消えたiの場所にアポストロフィ（'）を置くとit's。'は「文字が省略された跡」です。its（それの）には'がありません。"),
+  m1EnglishWord("基本語句","「私のお気に入りの歌手」を英語で書きなさい。","my favorite singer","sing（歌う）＋er（する人）でsinger（歌手）。そこへfavorite（いちばん好きな）とmy（私の）を前から重ね、my favorite singerを作ります。"),
+  m1EnglishWord("基本語句","「とても上手にピアノを演奏する」を英語で書きなさい。","play the piano very well","まずplay the pianoで「ピアノを弾く」。最後にvery wellを足すと「とても上手に」になります。スポーツにはtheなし、楽器にはtheあり、が見分けるコツです。"),
 
-  m1EnglishSentence("誕生日","When is your birthday? — My birthday is July 14.","あなたの誕生日はいつですか。― 私の誕生日は7月14日です。","When is + 名詞? ＝「〜はいつですか」",[["When","いつ"],["is your birthday?","あなたの誕生日ですか"],["My birthday is","私の誕生日は〜です"],["July 14","7月14日"]],"日付は、月を先に置いてJuly 14のように表します。"),
+  m1EnglishSentence("誕生日","When is your birthday? — My birthday is July 14.","あなたの誕生日はいつですか。― 私の誕生日は7月14日です。","When is + 名詞? ＝「〜はいつですか」",[["When","いつ"],["is your birthday?","あなたの誕生日ですか"],["My birthday is","私の誕生日は〜です"],["July 14","7月14日"]],"Whenはカレンダーのどこかを指して「いつ？」と聞く言葉です。答えはYes／Noではなく具体的な日付。英語ではJuly 14のように月を先に置きます。"),
 
-  m1EnglishSentence("将棋の会話","Can you play shogi? — No, I can't.","あなたは将棋を指せますか。― いいえ、指せません。","Can + 主語 + 動詞の原形 ...?",[["Can you","あなたは〜できますか"],["play shogi","将棋を指す"],["No, I can't.","いいえ、できません"]],"Canでたずねられたら、答えにもcanを使います。"),
-  m1EnglishSentence("将棋の会話","Can you teach it to me? — Sure.","それを私に教えてくれますか。― もちろん。","teach + もの + to + 人 ＝「人にものを教える」",[["Can you teach","あなたは教えられますか"],["it","それを"],["to me","私に"],["Sure.","もちろん"]],"itは前に出たshogi（将棋）を指します。"),
-  m1EnglishSentence("将棋の会話","You use many pieces in shogi.","将棋では、たくさんの駒を使います。","use + many + 複数名詞",[["You use","あなたは使います"],["many pieces","たくさんの駒を"],["in shogi","将棋で"]],"manyの後ろは複数形piecesです。"),
-  m1EnglishSentence("将棋の会話","Can you read the kanji on this piece? — No. I can't read it.","この駒に書かれた漢字を読めますか。― いいえ、読めません。","Can + 主語 + 動詞の原形 ...? / can't + 動詞の原形",[["Can you read","あなたは読めますか"],["the kanji","その漢字を"],["on this piece","この駒にある"],["I can't read it.","私はそれを読めません"]],"on this pieceは「この駒の上にある」という位置を表します。"),
-  m1EnglishSentence("将棋の会話","It is “fu.”","それは「歩」です。","It is + 名前 ＝「それは〜です」",[["It","それは（駒の漢字を指す）"],["is","〜です"],["“fu”","「歩」"]],"前に出たものをitで受けています。"),
-  m1EnglishSentence("将棋の会話","This piece can move one space forward.","この駒は前へ1マス動くことができます。","主語 + can + 動詞の原形 + 距離 + 方向",[["This piece","この駒は"],["can move","動くことができます"],["one space","1マス"],["forward","前へ"]],"one spaceは「1マス」、forwardは「前へ」です。"),
+  m1EnglishSentence("将棋の会話","Can you play shogi? — No, I can't.","あなたは将棋を指せますか。― いいえ、指せません。","Can + 主語 + 動詞の原形 ...?",[["Can you","あなたは〜できますか"],["play shogi","将棋を指す"],["No, I can't.","いいえ、できません"]],"将棋を「する」も英語ではplay。ただしゲーム名のshogiにはtheを付けません。Canで聞かれたら、同じcanを使って短く答えます。"),
+  m1EnglishSentence("将棋の会話","Can you teach it to me? — Sure.","それを私に教えてくれますか。― もちろん。","teach + もの + to + 人 ＝「人にものを教える」",[["Can you teach","あなたは教えられますか"],["it","それを"],["to me","私に"],["Sure.","もちろん"]],"itは直前のshogiを指す「代わりの札」です。teach it to meは「それを→私に→教える」。返事のSure.は、会話を前へ進める気持ちのよいひと言です。"),
+  m1EnglishSentence("将棋の会話","You use many pieces in shogi.","将棋では、たくさんの駒を使います。","use + many + 複数名詞",[["You use","あなたは使います"],["many pieces","たくさんの駒を"],["in shogi","将棋で"]],"pieceは「全体の中の1つ」で、ゲームでは駒を表します。将棋には駒がたくさんあるため、manyの後ろを複数形piecesにします。"),
+  m1EnglishSentence("将棋の会話","Can you read the kanji on this piece? — No. I can't read it.","この駒に書かれた漢字を読めますか。― いいえ、読めません。","Can + 主語 + 動詞の原形 ...? / can't + 動詞の原形",[["Can you read","あなたは読めますか"],["the kanji","その漢字を"],["on this piece","この駒にある"],["I can't read it.","私はそれを読めません"]],"onは「表面にくっついている」イメージ。on this pieceで「この駒に書かれた」と読めます。答えのitはthe kanjiの言いかえです。"),
+  m1EnglishSentence("将棋の会話","It is “fu.”","それは「歩」です。","It is + 名前 ＝「それは〜です」",[["It","それは（駒の漢字を指す）"],["is","〜です"],["“fu”","「歩」"]],"会話では分かりきったものを何度も言いません。the kanjiをItに置きかえて、It is “fu.”と名前を教えています。"),
+  m1EnglishSentence("将棋の会話","This piece can move one space forward.","この駒は前へ1マス動くことができます。","主語 + can + 動詞の原形 + 距離 + 方向",[["This piece","この駒は"],["can move","動くことができます"],["one space","1マス"],["forward","前へ"]],"盤上の動きを、①何がThis piece、②どうするcan move、③何マスone space、④どちらへforwardの順に並べた文です。ゲームの説明にそのまま使えます。"),
 
-  m1EnglishWord("My Hero","「消防士」を英語で書きなさい。","firefighter","fire（火）とfighter（戦う人）が合わさった語です。"),
-  m1EnglishWord("My Hero","「中国」を英語で書きなさい。","China","国名なので、最初の文字を大文字にします。"),
-  m1EnglishSentence("My Hero","Li Ming is a firefighter in China.","リー・ミンは中国で消防士をしています。","主語 + is + 職業 + 場所",[["Li Ming","リー・ミンは"],["is a firefighter","消防士です"],["in China","中国で"]],"職業を表すfirefighterの前にはaを付けます。国名Chinaは大文字で始めます。"),
-  m1EnglishSentence("My Hero","He is my uncle.","彼は私のおじです。","主語 + is + 人との関係",[["He","彼は"],["is","〜です"],["my uncle","私のおじ"]],"男性を指す代名詞はheです。"),
-  m1EnglishSentence("My Hero","He can run fast.","彼は速く走ることができます。","主語 + can + 動詞の原形 + 副詞",[["He","彼は"],["can run","走ることができます"],["fast","速く"]],"canの後ろはrunsではなく、動詞の原形runです。"),
-  m1EnglishSentence("My Hero","He can speak many languages.","彼はたくさんの言語を話すことができます。","主語 + can + 動詞の原形 + many + 複数名詞",[["He","彼は"],["can speak","話すことができます"],["many languages","たくさんの言語を"]],"manyの後ろは複数形languagesです。"),
-  m1EnglishSentence("My Hero","He is kind and brave.","彼は親切で勇敢です。","主語 + is + 形容詞 + and + 形容詞",[["He","彼は"],["is","〜です"],["kind","親切な"],["and brave","そして勇敢な"]],"andでkindとbraveの2つの性質をつないでいます。"),
-  m1EnglishSentence("My Hero","I love his smile.","私は彼の笑顔が大好きです。","love + 人の + 名詞",[["I love","私は〜が大好きです"],["his","彼の"],["smile","笑顔"]],"hisは名詞の前で「彼の」を表します。")
+  m1EnglishWord("My Hero","「消防士」を英語で書きなさい。","firefighter","fire（火）＋fighter（戦う人）＝「火と戦う人」。長い単語でも、2つに割れば意味もつづりも見えます。fightの後ろに人を表す-erを付けたfighterが入っています。"),
+  m1EnglishWord("My Hero","「中国」を英語で書きなさい。","China","国名のChinaは固有名詞なのでCを大文字にします。小文字のchinaには「陶磁器」という別の意味もあります。大文字1つで国名だと分かるのがポイントです。"),
+  m1EnglishSentence("My Hero","Li Ming is a firefighter in China.","リー・ミンは中国で消防士をしています。","主語 + is + 職業 + 場所",[["Li Ming","リー・ミンは"],["is a firefighter","消防士です"],["in China","中国で"]],"firefighterはfire＋fighterで「火と戦う人」。職業は1人に1つなのでa firefighter、場所はin Chinaと後ろから足します。"),
+  m1EnglishSentence("My Hero","He is my uncle.","彼は私のおじです。","主語 + is + 人との関係",[["He","彼は"],["is","〜です"],["my uncle","私のおじ"]],"前の文でLi Mingを紹介済みなので、次はHeへバトンタッチ。He is my uncle.の短い一文で、自分との関係が分かります。"),
+  m1EnglishSentence("My Hero","He can run fast.","彼は速く走ることができます。","主語 + can + 動詞の原形 + 副詞",[["He","彼は"],["can run","走ることができます"],["fast","速く"]],"canは「能力」を紹介するスイッチです。can＋runで「走れる」、最後のfastで速さを追加。fastは形を変えずに「速い」にも「速く」にも使えます。"),
+  m1EnglishSentence("My Hero","He can speak many languages.","彼はたくさんの言語を話すことができます。","主語 + can + 動詞の原形 + many + 複数名詞",[["He","彼は"],["can speak","話すことができます"],["many languages","たくさんの言語を"]],"言語を「話す」はspeakを使います。manyは数えられるものをたくさん集める言葉なので、languageを複数形languagesにします。"),
+  m1EnglishSentence("My Hero","He is kind and brave.","彼は親切で勇敢です。","主語 + is + 形容詞 + and + 形容詞",[["He","彼は"],["is","〜です"],["kind","親切な"],["and brave","そして勇敢な"]],"人の性格を2つ紹介したいときは、形容詞をandで連結します。kind＋and＋braveで「親切で、しかも勇敢」。短いのに人物像が見える文です。"),
+  m1EnglishSentence("My Hero","I love his smile.","私は彼の笑顔が大好きです。","love + 人の + 名詞",[["I love","私は〜が大好きです"],["his","彼の"],["smile","笑顔"]],"likeより強い「大好き」がloveです。hisは「彼の」という持ち主の札で、smileの前に置きます。人物紹介を気持ちで締めくくる一文です。")
 ];
 const MINATOGAWA1_ENGLISH_CARDS=[...MINATOGAWA1_MONTHS,...MINATOGAWA1_ENGLISH_SOURCE].map((card,i)=>({
   id:"m1-en-"+String(i+1).padStart(3,"0"),subject:"英語",
@@ -537,7 +546,7 @@ function render(){
   bind();
 }
 function cardHtml(c){
-  const approachTitle=c.subject==="国語"&&/^(?:ことわざ|慣用句)/.test(c.unit)?"意味もいっしょに覚えよう":"まず、どう考える？";
+  const approachTitle=c.subject==="英語"?(c.unit==="月名"?"🌍 名前の由来・覚え方":"💡 使う場面・覚え方"):c.subject==="国語"&&/^(?:ことわざ|慣用句)/.test(c.unit)?"意味もいっしょに覚えよう":"まず、どう考える？";
   const isDone=mastered.has(c.id);
   const needsRetry=retryIds.has(c.id);
   const front='<div class="head"><span class="badge">'+META[state.subject].icon+' '+state.subject+'</span><span>'+esc(c.no)+'</span></div><div class="front"><p class="unit">'+esc(c.unit)+'</p><div class="question">'+esc(c.question)+'</div>'+(c.mathHtml?'<div class="formula">'+c.mathHtml+'</div>':'')+(c.hint?'<p class="hint">ヒント：'+esc(c.hint)+'</p>':'')+'</div><div class="guide">タップで答え・左右スワイプで問題を送れるにゃ〜♪</div>';
@@ -550,7 +559,9 @@ function cardHtml(c){
   const mathOriginal=c.subject==="数学"?'<section class="math-original"><h2>📝 問題</h2><p class="math-original-text'+(isStory?' is-story':'')+'">'+esc(c.question)+'</p>'+(c.mathHtml?'<div class="formula">'+c.mathHtml+'</div>':'')+'</section>':'';
   const mathFlow=c.subject==="数学"?(c.worked?.length?c.worked.map((w,i,a)=>{const prep=/^準備/.test(w.title||''),hasPrep=/^準備/.test(a[0]?.title||''),label=prep?'準備':String(hasPrep?i:i+1),title=String(w.title||'').replace(/^[①②③④⑤⑥⑦⑧⑨⑩]\s*/,"");return '<div class="math-step-card"><span class="math-step-number'+(prep?' prep':'')+'">'+label+'</span>'+(title?'<h3>'+esc(title)+'</h3>':'')+(w.note?'<p>'+esc(w.note)+'</p>':'')+(w.mathHtml?'<div class="formula">'+w.mathHtml+'</div>':'')+'</div>'}).join(''):(c.steps||[]).map((s,i)=>'<div class="math-step-card"><span class="math-step-number">'+(i+1)+'</span>'+(c.stepMathHtml?.[i]?'<div class="formula">'+c.stepMathHtml[i]+'</div>':'<p>'+esc(s)+'</p>')+'</div>').join('')):'';
   const mathBack=c.subject==="数学"?'<div class="back math-back">'+mathOriginal+'<section class="math-panel math-method"><h2>🔑 解き方</h2><p>'+esc(c.approach||'')+'</p></section><section class="math-panel"><h2>✏️ 途中計算</h2><div class="math-flow">'+mathFlow+'</div></section><section class="answer math-answer"><small>答え</small>'+answer+'</section>'+(c.caution?'<section class="caution"><h2>⚠️ 間違えやすいところ</h2><p>'+esc(c.caution)+'</p></section>':'')+'</div>':'';
-  const regularBack='<div class="back">'+(c.approach?'<section class="block"><h2>'+approachTitle+'</h2><p>'+esc(c.approach)+'</p></section>':'')+worked+steps+'<section class="answer"><small>答えだにゃ！</small>'+answer+'</section>'+(c.caution?'<section class="caution"><h2>ここに注意だにゃ</h2><p>'+esc(c.caution)+'</p></section>':'')+'</div>';
+  const approachBlock=c.approach?'<section class="block"><h2>'+approachTitle+'</h2><p>'+esc(c.approach)+'</p></section>':'';
+  const answerBlock='<section class="answer"><small>'+(c.subject==="英語"?'英語の答え':'答えだにゃ！')+'</small>'+answer+'</section>';
+  const regularBack='<div class="back">'+(c.subject==="英語"?answerBlock+approachBlock+worked+steps:approachBlock+worked+steps+answerBlock)+(c.caution?'<section class="caution"><h2>ここに注意だにゃ</h2><p>'+esc(c.caution)+'</p></section>':'')+'</div>';
   const back='<div class="head"><span class="badge">🐱 解答・解説</span><span>'+esc(c.no)+'</span></div>'+(guide?englishBack:c.subject==="数学"?mathBack:regularBack);
   return '<div id="card" class="card'+(state.flipped?' is-back':'')+'" tabindex="0">'+(state.flipped?back:front)+'</div><div class="actions"><button id="prev" aria-label="前の問題">←</button><button id="again" class="again'+(needsRetry?' is-retry':'')+'" aria-pressed="'+needsRetry+'">'+(needsRetry?'↶ やっぱ大丈夫':'↺ あとでもう一度')+'</button><button id="done" class="done'+(isDone?' is-mastered':'')+'" aria-pressed="'+isDone+'">'+(isDone?'↶ やっぱできてない':'✓ できたにゃ！')+'</button><button id="next" aria-label="次の問題">→</button></div>';
 }
