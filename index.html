@@ -178,6 +178,20 @@ body{background-image:radial-gradient(circle at 8% 8%,rgba(255,182,193,.16),tran
 button{touch-action:manipulation}
 /* 表・裏ともカード上面のカラーラインを同じ太さで固定する */
 .card:before{height:8px;min-height:8px;flex:0 0 8px}
+/* 中2版と同じ横はみ出し対策。縦のレイアウトは変えず、長い内容だけを安全に折り返す。 */
+.math-back>*,.english-back>*{min-width:0;max-width:100%}
+.math-flow{display:grid;grid-template-columns:minmax(0,1fr);gap:9px}
+.math-flow>*,.chunk-list>*{min-width:0;max-width:100%}
+.math-step-card>*{min-width:0;max-width:100%}
+.steps{padding-left:20px}
+.steps li{min-width:0;max-width:100%}
+.work,.block,.worked,.answer,.caution{min-width:0;max-width:100%}
+.back .formula{width:100%;max-width:100%;min-width:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.back .formula::-webkit-scrollbar{height:0;display:none}
+.front .formula{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.front .formula::-webkit-scrollbar{height:0;display:none}
+.answer strong{max-width:100%;overflow-wrap:anywhere}
+.math-original-text,.math-method p,.math-step-card p,.back p,.chunk-en,.chunk-ja,.front .question{overflow-wrap:anywhere}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 </style></head><body><main id="app" class="app japanese"></main>
 <script>
@@ -381,7 +395,7 @@ for(const c of CARDS){
     c.englishGuide={...ENGLISH_GUIDES[c.id],point:lastStep.replace(/^ポイント：/,"")};
   }
 }
-/* 港川中1版：英語・数学は後から追加。現在は国語（漢字140問）のみ。 */
+/* 港川中1版：国語（漢字140問）に、教科書画像の英語問題を追加。 */
 const MINATOGAWA1_KANJI=[
   ["廊下","ろうか"],["掛ける","かける"],["描く","えがく"],["眺め","ながめ"],["新鮮","しんせん"],
   ["芽吹く","めぶく"],["薄い","うすい"],["輝く","かがやく"],["前髪","まえがみ"],["大胆","だいたん"],
@@ -417,7 +431,74 @@ const MINATOGAWA1_CARDS=MINATOGAWA1_KANJI.map(([question,answer],i)=>({
   unit:"漢字 "+(Math.floor(i/20)+1),no:"No."+(i+1),question,answer,
   mathHtml:"",answerMathHtml:""
 }));
-CARDS.splice(0,CARDS.length,...MINATOGAWA1_CARDS);
+const m1EnglishWord=(unit,question,answer,approach="")=>({unit,question,answer,approach});
+const m1EnglishSentence=(unit,question,answer,pattern,parts,approach,point="")=>({
+  unit,question,answer,approach,
+  englishGuide:{pattern,parts,point}
+});
+const MINATOGAWA1_MONTHS=[
+  ["1月","January"],["2月","February"],["3月","March"],["4月","April"],
+  ["5月","May"],["6月","June"],["7月","July"],["8月","August"],
+  ["9月","September"],["10月","October"],["11月","November"],["12月","December"]
+].map(([jp,en])=>m1EnglishWord("月名",jp+"を英語で書きなさい。",en,"月の名前は、最初の文字を大文字で書きます。"));
+const MINATOGAWA1_ENGLISH_SOURCE=[
+  m1EnglishWord("基本語句","「教室へ行ってください。」を英語にしなさい。","Please go to your classroom.","pleaseを文の最初に置くと、ていねいなお願いになります。"),
+  m1EnglishWord("基本語句","「私は『Shake It Off』を聞きます。」を英語にしなさい。","I listen to “Shake It Off.”","「〜を聞く」はlisten to 〜です。listenの後ろにtoを置きます。"),
+  m1EnglishWord("基本語句","「写真を撮る」を英語で書きなさい。","take a picture","takeとpictureの間にaを置きます。"),
+  m1EnglishWord("基本語句","「野球をする」を英語で書きなさい。","play baseball","球技の前には、ふつうtheを付けません。"),
+
+  m1EnglishSentence("can","I like Sakura. She can skateboard very well.","私はサクラが好きです。彼女はとても上手にスケートボードをすることができます。","すでに出た女性 → she / can + 動詞の原形",[["I like Sakura.","私はサクラが好きです"],["She","彼女は（サクラを指す）"],["can skateboard","スケートボードをすることができます"],["very well","とても上手に"]],"Sakuraは女性なので、2文目ではsheで言いかえます。","canの後ろはskateboardsではなく、動詞の原形skateboardです。"),
+  m1EnglishSentence("can","I like Sota. He can play shogi very well.","私はソウタが好きです。彼はとても上手に将棋を指すことができます。","すでに出た男性 → he / can + 動詞の原形",[["I like Sota.","私はソウタが好きです"],["He","彼は（ソウタを指す）"],["can play shogi","将棋を指すことができます"],["very well","とても上手に"]],"Sotaは男性なので、2文目ではheで言いかえます。","canの後ろはplaysではなく、動詞の原形playです。"),
+  m1EnglishWord("can","「私はギターを弾くことができます。」を英語にしなさい。","I can play the guitar.","「〜できます」はcan + 動詞の原形で表します。楽器の前にはtheを付けます。"),
+  m1EnglishWord("can","「あなたはギターを弾けますか。― はい、弾けます。／いいえ、弾けません。」を英語にしなさい。","Can you play the guitar? — Yes, I can. / No, I cannot.","canを主語の前に出して疑問文を作り、答えにもcanを使います。cannotの短縮形はcan'tです。"),
+  m1EnglishWord("can","「私はギターを弾くことができません。」を英語にしなさい。","I cannot play the guitar.","「〜できません」はcannot + 動詞の原形です。cannotは1語で書きます。"),
+
+  m1EnglishSentence("My Hero","My hero is Aimyon.","私のあこがれの人は、あいみょんです。","My hero is + 人 ＝「私のあこがれの人は〜です」",[["My hero","私のあこがれの人は"],["is","〜です"],["Aimyon","あいみょん"]],"heroは、ここでは自分があこがれている人・尊敬する人を表します。"),
+  m1EnglishSentence("My Hero","She is a popular singer in Japan.","彼女は日本で人気のある歌手です。","主語 + is + a + 形容詞 + 名詞",[["She","彼女は"],["is","〜です"],["a popular singer","人気のある歌手"],["in Japan","日本で"]],"popularは後ろのsingerを説明します。"),
+  m1EnglishSentence("My Hero","She can play the guitar well.","彼女は上手にギターを弾くことができます。","主語 + can + 動詞の原形 + well",[["She","彼女は"],["can play","弾くことができます"],["the guitar","ギターを"],["well","上手に"]],"canの後ろは動詞の原形playです。楽器の前にはtheを付けます。"),
+  m1EnglishSentence("My Hero","I like her powerful voice.","私は彼女の力強い声が好きです。","like + 人の + 形容詞 + 名詞",[["I like","私は〜が好きです"],["her","彼女の"],["powerful voice","力強い声"]],"powerfulはvoiceを説明する形容詞です。"),
+  m1EnglishSentence("My Hero","My favorite song is “Harunohi.”","私のお気に入りの歌は「ハルノヒ」です。","My favorite + 名詞 + is ...",[["My favorite song","私のお気に入りの歌は"],["is","〜です"],["“Harunohi”","「ハルノヒ」"]],"favoriteは「いちばん好きな・お気に入りの」という意味です。"),
+  m1EnglishSentence("My Hero","It is a song about love.","それは愛についての歌です。","a 名詞 + about + 話題 ＝「〜についての…」",[["It","それは（ハルノヒを指す）"],["is a song","歌です"],["about love","愛についての"]],"aboutは「〜について」という意味です。"),
+  m1EnglishSentence("My Hero","Please listen to the song.","その歌を聞いてください。","Please + 動詞の原形 / listen to + 名詞",[["Please","〜してください"],["listen to","〜を聞く"],["the song","その歌を"]],"listenはtoとセットで使います。"),
+
+  m1EnglishWord("基本語句","「もちろん。いいですとも。」を英語で書きなさい。","Sure.","相手のお願いを快く受けるときに使う表現です。"),
+  m1EnglishWord("基本語句","「（チェス・将棋などの）駒」を英語で書きなさい。","piece","複数の駒ならpiecesです。"),
+  m1EnglishWord("基本語句","「動かす／動く」を英語で書きなさい。","move","canの後ろではmoveのまま使います。"),
+  m1EnglishWord("基本語句","「英語を教える」を英語で書きなさい。","teach English","teachの後ろに教える内容を置きます。"),
+  m1EnglishWord("基本語句","「前へ／前方へ」を英語で書きなさい。","forward","move forwardで「前へ動く」です。"),
+  m1EnglishWord("基本語句","「たくさんのクマ」を英語で書きなさい。","many bears","manyの後ろは複数形bearsにします。"),
+  m1EnglishWord("基本語句","「ほほえみ／笑顔」を英語で書きなさい。","smile","名詞では「笑顔」、動詞では「ほほえむ」です。"),
+  m1EnglishWord("基本語句","「声」を英語で書きなさい。","voice","人の声を表す名詞です。"),
+  m1EnglishWord("基本語句","「歌」を英語で書きなさい。","song","複数ならsongsです。"),
+  m1EnglishWord("基本語句","「彼女の犬」を英語で書きなさい。","her dog","herは名詞の前で「彼女の」を表します。"),
+  m1EnglishWord("基本語句","「人気のある映画」を英語で書きなさい。","a popular movie","1本の映画なのでaを付け、popularをmovieの前に置きます。"),
+  m1EnglishWord("基本語句","it isの短縮形を書きなさい。","it's","it'sはit isを短くした形です。所有を表すitsとは区別します。"),
+  m1EnglishWord("基本語句","「私のお気に入りの歌手」を英語で書きなさい。","my favorite singer","favoriteをsingerの前に置きます。"),
+  m1EnglishWord("基本語句","「とても上手にピアノを演奏する」を英語で書きなさい。","play the piano very well","楽器の前にはtheを付けます。very wellは動作のしかたを説明します。"),
+
+  m1EnglishSentence("誕生日","When is your birthday? — My birthday is July 14.","あなたの誕生日はいつですか。― 私の誕生日は7月14日です。","When is + 名詞? ＝「〜はいつですか」",[["When","いつ"],["is your birthday?","あなたの誕生日ですか"],["My birthday is","私の誕生日は〜です"],["July 14","7月14日"]],"日付は、月を先に置いてJuly 14のように表します。"),
+
+  m1EnglishSentence("将棋の会話","Can you play shogi? — No, I can't.","あなたは将棋を指せますか。― いいえ、指せません。","Can + 主語 + 動詞の原形 ...?",[["Can you","あなたは〜できますか"],["play shogi","将棋を指す"],["No, I can't.","いいえ、できません"]],"Canでたずねられたら、答えにもcanを使います。"),
+  m1EnglishSentence("将棋の会話","Can you teach it to me? — Sure.","それを私に教えてくれますか。― もちろん。","teach + もの + to + 人 ＝「人にものを教える」",[["Can you teach","あなたは教えられますか"],["it","それを"],["to me","私に"],["Sure.","もちろん"]],"itは前に出たshogi（将棋）を指します。"),
+  m1EnglishSentence("将棋の会話","You use many pieces in shogi.","将棋では、たくさんの駒を使います。","use + many + 複数名詞",[["You use","あなたは使います"],["many pieces","たくさんの駒を"],["in shogi","将棋で"]],"manyの後ろは複数形piecesです。"),
+  m1EnglishSentence("将棋の会話","Can you read the kanji on this piece? — No. I can't read it.","この駒に書かれた漢字を読めますか。― いいえ、読めません。","Can + 主語 + 動詞の原形 ...? / can't + 動詞の原形",[["Can you read","あなたは読めますか"],["the kanji","その漢字を"],["on this piece","この駒にある"],["I can't read it.","私はそれを読めません"]],"on this pieceは「この駒の上にある」という位置を表します。"),
+  m1EnglishSentence("将棋の会話","It is “fu.”","それは「歩」です。","It is + 名前 ＝「それは〜です」",[["It","それは（駒の漢字を指す）"],["is","〜です"],["“fu”","「歩」"]],"前に出たものをitで受けています。"),
+  m1EnglishSentence("将棋の会話","This piece can move one space forward.","この駒は前へ1マス動くことができます。","主語 + can + 動詞の原形 + 距離 + 方向",[["This piece","この駒は"],["can move","動くことができます"],["one space","1マス"],["forward","前へ"]],"one spaceは「1マス」、forwardは「前へ」です。"),
+
+  m1EnglishWord("My Hero","「消防士」を英語で書きなさい。","firefighter","fire（火）とfighter（戦う人）が合わさった語です。"),
+  m1EnglishWord("My Hero","「中国」を英語で書きなさい。","China","国名なので、最初の文字を大文字にします。"),
+  m1EnglishSentence("My Hero","Li Ming is a firefighter in China.","リー・ミンは中国で消防士をしています。","主語 + is + 職業 + 場所",[["Li Ming","リー・ミンは"],["is a firefighter","消防士です"],["in China","中国で"]],"職業を表すfirefighterの前にはaを付けます。国名Chinaは大文字で始めます。"),
+  m1EnglishSentence("My Hero","He is my uncle.","彼は私のおじです。","主語 + is + 人との関係",[["He","彼は"],["is","〜です"],["my uncle","私のおじ"]],"男性を指す代名詞はheです。"),
+  m1EnglishSentence("My Hero","He can run fast.","彼は速く走ることができます。","主語 + can + 動詞の原形 + 副詞",[["He","彼は"],["can run","走ることができます"],["fast","速く"]],"canの後ろはrunsではなく、動詞の原形runです。"),
+  m1EnglishSentence("My Hero","He can speak many languages.","彼はたくさんの言語を話すことができます。","主語 + can + 動詞の原形 + many + 複数名詞",[["He","彼は"],["can speak","話すことができます"],["many languages","たくさんの言語を"]],"manyの後ろは複数形languagesです。"),
+  m1EnglishSentence("My Hero","He is kind and brave.","彼は親切で勇敢です。","主語 + is + 形容詞 + and + 形容詞",[["He","彼は"],["is","〜です"],["kind","親切な"],["and brave","そして勇敢な"]],"andでkindとbraveの2つの性質をつないでいます。"),
+  m1EnglishSentence("My Hero","I love his smile.","私は彼の笑顔が大好きです。","love + 人の + 名詞",[["I love","私は〜が大好きです"],["his","彼の"],["smile","笑顔"]],"hisは名詞の前で「彼の」を表します。")
+];
+const MINATOGAWA1_ENGLISH_CARDS=[...MINATOGAWA1_MONTHS,...MINATOGAWA1_ENGLISH_SOURCE].map((card,i)=>({
+  id:"m1-en-"+String(i+1).padStart(3,"0"),subject:"英語",
+  no:"No."+(i+1),mathHtml:"",answerMathHtml:"",...card
+}));
+CARDS.splice(0,CARDS.length,...MINATOGAWA1_ENGLISH_CARDS,...MINATOGAWA1_CARDS);
 const META={"英語":{icon:"📖",color:"english"},"数学":{icon:"➗",color:"math"},"国語":{icon:"✏️",color:"japanese"}};
 const KEY="minatogawa1-summer-mastered-v2",SOUND_KEY="minatogawa1-nekopon-sound-v1",STREAK_KEY="minatogawa1-nekopon-streak-v1";
 let state={subject:"国語",unit:"すべて",mode:"remaining",index:0,flipped:false,order:[],shuffleOn:false,holdId:null};
