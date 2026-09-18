@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Nekoponの夏休み</title>
-<meta name="application-name" content="Nekoponの夏休み">
-<meta name="apple-mobile-web-app-title" content="Nekoponの夏休み">
+<title>Nekoponのテスト対策</title>
+<meta name="application-name" content="Nekoponのテスト対策">
+<meta name="apple-mobile-web-app-title" content="Nekoponのテスト対策">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#8b4513">
@@ -503,13 +503,76 @@ const MINATOGAWA1_ENGLISH_SOURCE=[
   m1EnglishSentence("My Hero","He is kind and brave.","彼は親切で勇敢です。","主語 + is + 形容詞 + and + 形容詞",[["He","彼は"],["is","〜です"],["kind","親切な"],["and brave","そして勇敢な"]],"人の性格を2つ紹介したいときは、形容詞をandで連結します。kind＋and＋braveで「親切で、しかも勇敢」。短いのに人物像が見える文です。"),
   m1EnglishSentence("My Hero","I love his smile.","私は彼の笑顔が大好きです。","love + 人の + 名詞",[["I love","私は〜が大好きです"],["his","彼の"],["smile","笑顔"]],"likeより強い「大好き」がloveです。hisは「彼の」という持ち主の札で、smileの前に置きます。人物紹介を気持ちで締めくくる一文です。")
 ];
-const MINATOGAWA1_ENGLISH_CARDS=[...MINATOGAWA1_MONTHS,...MINATOGAWA1_ENGLISH_SOURCE].map((card,i)=>({
+// ===== 毎月の単語テスト =====
+// 次回以降も、この形式で月ごとの配列を追加し、MINATOGAWA1_MONTHLY_WORD_TESTS に足す。
+const MINATOGAWA1_WORD_TEST_2026_09=[
+  ["前置詞","～の上に","on ~"],
+  ["前置詞","～の下に","under ~"],
+  ["前置詞","～の隣に","next to ~"],
+  ["前置詞","～の前に","in front of ~"],
+  ["前置詞","～の後ろに","behind ~"],
+  ["前置詞","～と・・・の間に","between ~ and ..."],
+  ["前置詞","～の近くに","near ~"],
+  ["前置詞","～から遠くに","far from ~"],
+  ["前置詞","～の中に","in ~"],
+  ["前置詞","～から離れて","away from ~"],
+  ["場所を表す名詞","学校","school"],
+  ["場所を表す名詞","公園","park"],
+  ["場所を表す名詞","図書館","library"],
+  ["場所を表す名詞","駅","station"],
+  ["場所を表す名詞","病院","hospital"],
+  ["場所を表す名詞","郵便局","post office"],
+  ["場所を表す名詞","銀行","bank"],
+  ["場所を表す名詞","本屋","book store"],
+  ["場所を表す名詞","動物園","zoo"],
+  ["場所を表す名詞","美術館","museum"],
+  ["数字","11","eleven"],
+  ["数字","12","twelve"],
+  ["数字","13","thirteen"],
+  ["数字","14","fourteen"],
+  ["数字","15","fifteen"],
+  ["数字","16","sixteen"],
+  ["数字","17","seventeen"],
+  ["数字","18","eighteen"],
+  ["数字","19","nineteen"],
+  ["数字","20","twenty"],
+  ["数字","30","thirty"],
+  ["数字","40","forty"],
+  ["数字","50","fifty"],
+  ["数字","60","sixty"],
+  ["数字","70","seventy"],
+  ["数字","80","eighty"],
+  ["数字","90","ninety"],
+  ["数字","100","hundred"],
+  ["数字","1000","thousand"],
+  ["数字","100万","million"],
+  ["接続詞","そして","and"],
+  ["接続詞","しかし","but"],
+  ["接続詞","～か、もしくは・・・","or"],
+  ["接続詞","だから","so"],
+  ["接続詞","なぜならば","because"],
+  ["接続詞","それから","then"],
+  ["接続詞","～している間","while ~"],
+  ["接続詞","～の時","when ~"],
+  ["接続詞","もし～ならば","if ~"],
+  ["接続詞","～まで","until ~"]
+].map(([group,jp,en],i)=>({
+  id:"m1-en-wordtest-2026-09-"+String(i+1).padStart(2,"0"),
+  subject:"英語",unit:"9月 単語テスト",no:"No."+(i+1),
+  question:"「"+jp+"」を英語で書きなさい。",answer:en,
+  sourceGroup:group,mathHtml:"",answerMathHtml:""
+}));
+
+const MINATOGAWA1_MONTHLY_WORD_TESTS=[...MINATOGAWA1_WORD_TEST_2026_09];
+
+const MINATOGAWA1_ENGLISH_CARDS=[...MINATOGAWA1_MONTHS,...MINATOGAWA1_ENGLISH_SOURCE,...MINATOGAWA1_MONTHLY_WORD_TESTS].map((card,i)=>({
   id:"m1-en-"+String(i+1).padStart(3,"0"),subject:"英語",
   no:"No."+(i+1),mathHtml:"",answerMathHtml:"",...card
 }));
 CARDS.splice(0,CARDS.length,...MINATOGAWA1_ENGLISH_CARDS,...MINATOGAWA1_CARDS);
 const META={"英語":{icon:"📖",color:"english"},"数学":{icon:"➗",color:"math"},"国語":{icon:"✏️",color:"japanese"}};
-const KEY="minatogawa1-summer-mastered-v2",SOUND_KEY="minatogawa1-nekopon-sound-v1",STREAK_KEY="minatogawa1-nekopon-streak-v1";
+const OLD_KEY="minatogawa1-summer-mastered-v2",KEY="minatogawa1-test-mastered-v1",SOUND_KEY="minatogawa1-nekopon-sound-v1",STREAK_KEY="minatogawa1-nekopon-streak-v1";
+if(localStorage.getItem(KEY)===null&&localStorage.getItem(OLD_KEY)!==null)localStorage.setItem(KEY,localStorage.getItem(OLD_KEY));
 let state={subject:"国語",unit:"すべて",mode:"remaining",index:0,flipped:false,order:[],shuffleOn:false,holdId:null};
 let chipScroll=0;
 let mastered=new Set(JSON.parse(localStorage.getItem(KEY)||"[]"));
@@ -542,7 +605,7 @@ function render(){
   const c=d[state.index],units=["すべて",...new Set(CARDS.filter(x=>x.subject===state.subject).map(x=>x.unit))];
   const modes=[["remaining","まだ",remain],["all","ぜんぶ",b.length],["mastered","できた",done]],app=document.querySelector("#app");
   app.className="app "+META[state.subject].color;
-  app.innerHTML='<header class="top"><div class="brand"><div class="brand-copy"><p class="neko-kicker"><span class="brand-cat" id="leftCat">🐱</span><span>できるまで、くり返すにゃ〜♪</span><span class="brand-cat" id="rightCat">🐱</span></p><h1 id="gameTitle">Nekoponの夏休み</h1></div><div class="brand-meta"><p class="school-version">港川中１バージョン</p><div class="header-tools"><div class="count">'+(d.length?state.index+1:0)+' / '+d.length+'</div><button id="soundToggle" class="sound" aria-label="音を'+(neko.sound?'消す':'出す')+'">'+(neko.sound?'🔊':'🔇')+'</button></div></div></div><div class="neko-stats"><button class="stat-bubble" data-stat="score"><span class="stat-icon">✨</span><span>'+mastered.size*10+'</span></button><button class="stat-bubble" data-stat="streak"><span class="stat-icon">🔥</span><span>'+neko.streak+'</span></button><button class="stat-bubble" data-stat="level"><span class="stat-icon">🏆</span><span>Lv.'+nekoLevel()+'</span></button></div><nav class="subjects">'+Object.keys(META).map(s=>'<button data-subject="'+s+'" class="'+(s===state.subject?'active':'')+'"><span class="subject-icon">'+META[s].icon+'</span><span>'+s+'</span></button>').join('')+'</nav><div class="progress"><div class="progresscopy"><strong>できた '+done+'問</strong><span>あと '+remain+'問にゃ</span></div><div class="track"><i style="width:'+(b.length?done/b.length*100:0)+'%"></i></div></div><div class="filters"><div class="modes">'+modes.map(m=>'<button data-mode="'+m[0]+'" class="'+(state.mode===m[0]?'active':'')+'">'+m[1]+' '+m[2]+'</button>').join('')+'</div><button id="shuffle" class="shuffle" aria-pressed="'+state.shuffleOn+'">'+(state.shuffleOn?'↩ 元の順番にゃ':'🎲 シャッフルにゃ')+'</button></div><div class="chips">'+units.map(u=>'<button data-unit="'+esc(u)+'" class="'+(u===state.unit?'active':'')+'">'+esc(u)+'</button>').join('')+'</div></header><section class="stage">'+(c?cardHtml(c):emptyHtml(remain))+'</section>';
+  app.innerHTML='<header class="top"><div class="brand"><div class="brand-copy"><p class="neko-kicker"><span class="brand-cat" id="leftCat">🐱</span><span>できるまで、くり返すにゃ〜♪</span><span class="brand-cat" id="rightCat">🐱</span></p><h1 id="gameTitle">Nekoponのテスト対策</h1></div><div class="brand-meta"><p class="school-version">港川中１バージョン</p><div class="header-tools"><div class="count">'+(d.length?state.index+1:0)+' / '+d.length+'</div><button id="soundToggle" class="sound" aria-label="音を'+(neko.sound?'消す':'出す')+'">'+(neko.sound?'🔊':'🔇')+'</button></div></div></div><div class="neko-stats"><button class="stat-bubble" data-stat="score"><span class="stat-icon">✨</span><span>'+mastered.size*10+'</span></button><button class="stat-bubble" data-stat="streak"><span class="stat-icon">🔥</span><span>'+neko.streak+'</span></button><button class="stat-bubble" data-stat="level"><span class="stat-icon">🏆</span><span>Lv.'+nekoLevel()+'</span></button></div><nav class="subjects">'+Object.keys(META).map(s=>'<button data-subject="'+s+'" class="'+(s===state.subject?'active':'')+'"><span class="subject-icon">'+META[s].icon+'</span><span>'+s+'</span></button>').join('')+'</nav><div class="progress"><div class="progresscopy"><strong>できた '+done+'問</strong><span>あと '+remain+'問にゃ</span></div><div class="track"><i style="width:'+(b.length?done/b.length*100:0)+'%"></i></div></div><div class="filters"><div class="modes">'+modes.map(m=>'<button data-mode="'+m[0]+'" class="'+(state.mode===m[0]?'active':'')+'">'+m[1]+' '+m[2]+'</button>').join('')+'</div><button id="shuffle" class="shuffle" aria-pressed="'+state.shuffleOn+'">'+(state.shuffleOn?'↩ 元の順番にゃ':'🎲 シャッフルにゃ')+'</button></div><div class="chips">'+units.map(u=>'<button data-unit="'+esc(u)+'" class="'+(u===state.unit?'active':'')+'">'+esc(u)+'</button>').join('')+'</div></header><section class="stage">'+(c?cardHtml(c):emptyHtml(remain))+'</section>';
   bind();
 }
 function cardHtml(c){
